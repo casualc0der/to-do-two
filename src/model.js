@@ -28,6 +28,7 @@ const deleteProject = (id) => {
     localStorage.setItem(['DATABASE']['PDatabase'], JSON.stringify(mapper))
     
     
+    
 }
 
 

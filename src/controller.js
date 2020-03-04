@@ -12,11 +12,14 @@ const startUp = () => {
     viewController.createSection('div', 'root', 'projectDisplay', 'projectIcons')
     viewController.createSection('div', 'root', 'todoDisplay', 'todoIcons')
     viewController.renderProjects(DATABASE.PDatabase)
+
     document.getElementById('addProject').addEventListener('click', () => {
     const projectName = document.getElementById('projectNameInput').value
     const x = model.project(uuidv4(), projectName);
     DATABASE.PDatabase.push(x)
+
     localStorage.setItem(['DATABASE']['PDatabase'], JSON.stringify(DATABASE.PDatabase))
+    const retrieveDB1 = JSON.parse(localStorage.getItem(['DATABASE']['PDatabase']))
     viewController.renderProjects(DATABASE.PDatabase)
 
     })
