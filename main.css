@@ -1,0 +1,15 @@
+.projectIcons {
+
+    height: 200px;
+    width: 200px;
+    background-color: aquamarine;
+}
+
+.projectTiles {
+
+    border-radius: 1px;
+    border-style: solid;
+    border-color: grey;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvc3R5bGVzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTs7QUFFQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQSxDIiwiZmlsZSI6Im1haW4uY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnByb2plY3RJY29ucyB7XG5cbiAgICBoZWlnaHQ6IDIwMHB4O1xuICAgIHdpZHRoOiAyMDBweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBhcXVhbWFyaW5lO1xufVxuXG4ucHJvamVjdFRpbGVzIHtcblxuICAgIGJvcmRlci1yYWRpdXM6IDFweDtcbiAgICBib3JkZXItc3R5bGU6IHNvbGlkO1xuICAgIGJvcmRlci1jb2xvcjogZ3JleTtcbn0iXSwic291cmNlUm9vdCI6IiJ9*/
