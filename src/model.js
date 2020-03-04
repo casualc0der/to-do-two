@@ -22,19 +22,12 @@ const projectDB = () => {
 
 const deleteProject = (id) => {
 
+    const DB = JSON.parse(localStorage.getItem(['DATABASE']['PDatabase']))
+    const loller = DB
+    const mapper = loller.filter((e) => e.id !== id)
+    localStorage.setItem(['DATABASE']['PDatabase'], JSON.stringify(mapper))
     
-    const DB = JSON.parse(localStorage.getItem(['DATABASE']))
-    // DB['PDatabase'].splice((DB['PDatabase'].indexOf(id)), 1)
     
-    const lol = DB['PDatabase'][0]['id']
-    // localStorage.setItem('DATABASE', JSON.stringify(DB))
-    // console.log(`Delete prod`)
-    console.log(lol)
-    // console.log(DB)
-
-    // const browserDB = PDatabase;
-    
-
 }
 
 

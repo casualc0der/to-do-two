@@ -5,9 +5,9 @@ const init = (() => {
     const loadDB = () => {
     if('DATABASE' in localStorage){ 
 
-        const savedDB = JSON.parse(localStorage.getItem('DATABASE'))
+        const savedDB = JSON.parse(localStorage.getItem(['DATABASE']['PDatabase']))
         let DATABASE = model.projectDB()
-        savedDB.PDatabase.forEach((e) => {
+        savedDB.forEach((e) => {
             DATABASE.PDatabase.push(e)
         })
        

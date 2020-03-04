@@ -1,3 +1,5 @@
+import { controller } from './controller'
+
 const viewController = (() => {
 
     const createSection = (type, attachId, sectionId, sectionClass) => {
@@ -28,18 +30,22 @@ const viewController = (() => {
     const renderProjects = (db) => {
         clearSection('projectDisplay')
         
-        db.forEach((e) => {
-            createSection('div', 'projectDisplay', e.id, 'projectTiles')
-            
-            const tile = document.getElementById(e.id)
-            tile.innerHTML = e.name
-            createButton('x', e.id, `B~${e.id}`)
-            document.getElementById(`B~${e.id}`).classList.add("deleteButton")
+        db.map((e) => {   
 
-                
-            })
+        createSection('div', 'projectDisplay', e.id, 'projectTiles')
+                    
+                    const tile = document.getElementById(e.id)
+                    tile.innerHTML = e.name
+                    createButton('x', e.id, `B~${e.id}`)
+                    document.getElementById(`B~${e.id}`).classList.add("deleteButton")
+
+        })
       
+           
+            
 
+     
+            controller.deleteProj();
 
     }
 
