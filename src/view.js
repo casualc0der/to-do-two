@@ -45,7 +45,7 @@ const viewController = (() => {
             
 
      
-            controller.deleteProj();
+            controller.deleteProjectButtons();
 
     }
 

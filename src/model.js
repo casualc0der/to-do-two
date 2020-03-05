@@ -3,9 +3,9 @@ const model = (()=> {
 
 const project = (id, name) => {
 
-    const todoLists = [];
+    const todoListCollection = [];
 
-    return {id, name, todoLists};
+    return {id, name, todoListCollection};
 
 }
 
@@ -21,7 +21,7 @@ const projectDB = () => {
 }
 
 const deleteProject = (id) => {
-
+    
     const DB = JSON.parse(localStorage.getItem(['DATABASE']['PDatabase']))
     const loller = DB
     const mapper = loller.filter((e) => e.id !== id)

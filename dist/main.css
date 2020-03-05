@@ -1,15 +1,23 @@
 .projectIcons {
 
-    height: 200px;
-    width: 200px;
+    height: 1000px;
+    width: 150px;
     background-color: aquamarine;
 }
 
 .projectTiles {
 
     border-radius: 1px;
+    width: 100px;
+    height:50px;
     border-style: solid;
     border-color: grey;
+
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvc3R5bGVzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTs7QUFFQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQSxDIiwiZmlsZSI6Im1haW4uY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnByb2plY3RJY29ucyB7XG5cbiAgICBoZWlnaHQ6IDIwMHB4O1xuICAgIHdpZHRoOiAyMDBweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBhcXVhbWFyaW5lO1xufVxuXG4ucHJvamVjdFRpbGVzIHtcblxuICAgIGJvcmRlci1yYWRpdXM6IDFweDtcbiAgICBib3JkZXItc3R5bGU6IHNvbGlkO1xuICAgIGJvcmRlci1jb2xvcjogZ3JleTtcbn0iXSwic291cmNlUm9vdCI6IiJ9*/
+.deleteButton {
+    float:right;
+
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvc3R5bGVzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTs7QUFFQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOztBQUVBOztBQUVBO0FBQ0E7O0FBRUEsQyIsImZpbGUiOiJtYWluLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5wcm9qZWN0SWNvbnMge1xuXG4gICAgaGVpZ2h0OiAxMDAwcHg7XG4gICAgd2lkdGg6IDE1MHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6IGFxdWFtYXJpbmU7XG59XG5cbi5wcm9qZWN0VGlsZXMge1xuXG4gICAgYm9yZGVyLXJhZGl1czogMXB4O1xuICAgIHdpZHRoOiAxMDBweDtcbiAgICBoZWlnaHQ6NTBweDtcbiAgICBib3JkZXItc3R5bGU6IHNvbGlkO1xuICAgIGJvcmRlci1jb2xvcjogZ3JleTtcblxufVxuXG4uZGVsZXRlQnV0dG9uIHtcbiAgICBmbG9hdDpyaWdodDtcblxufSJdLCJzb3VyY2VSb290IjoiIn0=*/
