@@ -27,6 +27,14 @@ const viewController = (() => {
     
     }
 
+    const startUpRender =  () => { 
+
+        createSection('input','root','projectNameInput', 'projectNameInput' )
+        createButton('Add Project', 'root', 'addProject') 
+        createSection('div', 'root', 'projectDisplay', 'projectIcons')
+        createSection('div', 'root', 'todoDisplay', 'todoIcons')
+    }
+
     const renderProjects = (db) => {
         clearSection('projectDisplay')
         db.map((e) => {   
@@ -66,7 +74,12 @@ const viewController = (() => {
             tasks.forEach((e) => {
             createSection('div', 'todoDisplay', `T-${e.id}`, 'todotiles')
             const node = document.getElementById(`T-${e.id}`)
-            node.innerHTML = e.title;
+            node.innerHTML = `  <ul>
+                                <li>${e.title}</li>            
+                               <li>${e.description || ''}</li> 
+                               <li>${e.datedue || ''}</li> 
+                               <li>${e.priority || ''}</li> 
+                               </ul>                `;
             node.addEventListener('click', () => {
                 createForm(dbID, e.id)         
                 
@@ -85,33 +98,82 @@ const viewController = (() => {
         }
 
         const createForm = (dbID, id) => {
-            clearSection('myModal')
-            createSection('div','myModal', `F-${id}`, 'taskForm')
-            createSection('input',`F-${id}`,'title', 'taskFormFields')
-            createSection('input',`F-${id}`,'description', 'taskFormFields')
-            createSection('input',`F-${id}`,'dueDate', 'taskFormFields')
-            createSection('input',`F-${id}`,'priority', 'taskFormFields')
-            createButton('Update', 'myModal', 'updateFormButton' )
-            const details = controller.retrieveTodo(dbID, id)
-            console.log(details)
-            const title = document.getElementById('title')
-            const description = document.getElementById('description')
-            const dueDate = document.getElementById('dueDate')
-            const priority = document.getElementById('priority')
-            title.value = details.title;
-            description.value = details.description;
-            dueDate.value = details.dueDate;
-            priority.value = details.priority;
+
+            try {
+                clearSection('myModal')
+                createSection('div','myModal', `F-${id}`, 'taskForm')
+                createSection('input',`F-${id}`,'title', 'taskFormFields')
+                createSection('input',`F-${id}`,'description', 'taskFormFields')
+                createSection('input',`F-${id}`,'dueDate', 'taskFormFields')
+                createSection('select',`F-${id}`,'priority', 'taskFormFields')
+                createSection('option','priority','high', 'taskFormFields')
+                createSection('option','priority','normal', 'taskFormFields')
+                createSection('option','priority','low', 'taskFormFields')
+                createButton('Update', 'myModal', 'updateFormButton' )
+                document.getElementById('high').value = 'High'
+                document.getElementById('high').textContent = 'High'
+                document.getElementById('normal').value = 'Normal'
+                document.getElementById('normal').textContent = 'Normal'
+                document.getElementById('low').value = 'Low'
+                document.getElementById('low').textContent = 'Low'
 
 
-   
-            document.getElementById('updateFormButton')
-                .addEventListener('click', ()=> {
-                    const title = document.getElementById('title').value
-                    const description = document.getElementById('description').value
-                    const dueDate = document.getElementById('dueDate').value
-                    const priority = document.getElementById('priority').value
-                    controller.editTodo(dbID, id, title,description,dueDate,priority)})
+                const details = controller.retrieveTodo(dbID, id)
+                console.log(details)
+                const title = document.getElementById('title')
+                const description = document.getElementById('description')
+                const dueDate = document.getElementById('dueDate')
+                dueDate.type = 'date'
+                const priority = document.getElementById('priority')
+
+                 if(details.title === undefined) {
+                    title.value = ''
+                    title.placeholder = 'Title'
+                 }
+                 else {
+                    title.value = details.title;
+                 }       
+                
+                 if(details.description === undefined) {
+
+                    description.value = ''
+                    description.placeholder = 'Description'
+                 }
+                 else {
+                    description.value = details.description;
+                 }
+                
+
+                dueDate.value = details.dueDate;
+
+                if(details.priority === undefined) {
+                    priority.value = details.priority = ''
+                    priority.placeholder = 'Priority'
+                }
+                else {
+                    priority.value = details.priority;
+                }
+                
+
+
+                document.getElementById('updateFormButton')
+                    .addEventListener('click', ()=> {
+                        const title = document.getElementById('title').value
+                        const description = document.getElementById('description').value
+                        const dueDate = document.getElementById('dueDate').value
+                        const priority = document.getElementById('priority').value
+                        controller.editTodo(dbID, id, title,description,dueDate,priority)})
+                        renderTodos(dbID);
+
+
+
+
+
+            } catch (error) {
+                clearSection('myModal')
+                
+            }
+           
 
            
 
@@ -121,7 +183,7 @@ const viewController = (() => {
     }
 
 
-return { createSection, createButton, renderProjects, renderTodos }
+return { createSection, createButton, renderProjects, renderTodos, startUpRender }
 })();
 
 export { viewController }

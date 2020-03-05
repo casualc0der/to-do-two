@@ -7,12 +7,7 @@ const controller = (() => {
 
 const startUp = () => {
     const DATABASE  = init.loadDB();
-
-    viewController.createSection('input','root','projectNameInput', 'projectNameInput' )
-    viewController.createButton('Add Project', 'root', 'addProject')    
-    
-    viewController.createSection('div', 'root', 'projectDisplay', 'projectIcons')
-    viewController.createSection('div', 'root', 'todoDisplay', 'todoIcons')
+    viewController.startUpRender();
     viewController.renderProjects(DATABASE.PDatabase)
     deleteProjectButtons();
     
@@ -93,6 +88,7 @@ document.getElementById('addProject').addEventListener('click', () => {
                 retrieveDB.filter(e => e.id === dbId)[0].todoListCollection[i].priority = priority
                 console.log (retrieveDB)
                 localStorage.setItem(['DATABASE']['PDatabase'], JSON.stringify(retrieveDB))
+                viewController.renderTodos(dbId);
             }
             
         })
