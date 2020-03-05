@@ -8,8 +8,8 @@ const project = (id, name) => {
 
 }
 
-const todoList = (id, title, desc) => {
-    return { id, title, desc}
+const todoList = (id, title, desc, datedue, priority) => {
+    return { id, title, desc, datedue, priority}
 }
 
 const projectDB = () => {

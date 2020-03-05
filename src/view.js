@@ -48,6 +48,8 @@ const viewController = (() => {
     }
 
     const renderTodos = (dbID) => {
+    
+
         clearSection('todoDisplay')
         viewController.createSection('input','todoDisplay',dbID, 'taskNameInput' )
         viewController.createButton('Add Task', 'todoDisplay', 'addTask')
@@ -56,25 +58,64 @@ const viewController = (() => {
             renderTodos(dbID);
         
         });
-        console.log(dbID)
+        
         const retrieveDB = JSON.parse(localStorage.getItem(['DATABASE']['PDatabase']));
         try {
+            
             const tasks = retrieveDB.filter(e => e.id === dbID)[0].todoListCollection
             tasks.forEach((e) => {
             createSection('div', 'todoDisplay', `T-${e.id}`, 'todotiles')
             const node = document.getElementById(`T-${e.id}`)
             node.innerHTML = e.title;
+            node.addEventListener('click', () => {
+                createForm(dbID, e.id)         
+                
+            
+            })
             createButton('x', `T-${e.id}`, `BB${e.id}`)
             document.getElementById(`BB${e.id}`).classList.add('deleteTodoButton')
-             document.getElementById(`BB${e.id}`).addEventListener('click', () => {
-                 
-                controller.deleteTask(dbID, e.id)
-                renderTodos(dbID);
+            document.getElementById(`BB${e.id}`).addEventListener('click', () => {
+            controller.deleteTask(dbID, e.id)
+            renderTodos(dbID);
             })
         })
 
         } catch (error) {
             console.log('Project Deleted!')
+        }
+
+        const createForm = (dbID, id) => {
+            clearSection('myModal')
+            createSection('div','myModal', `F-${id}`, 'taskForm')
+            createSection('input',`F-${id}`,'title', 'taskFormFields')
+            createSection('input',`F-${id}`,'description', 'taskFormFields')
+            createSection('input',`F-${id}`,'dueDate', 'taskFormFields')
+            createSection('input',`F-${id}`,'priority', 'taskFormFields')
+            createButton('Update', 'myModal', 'updateFormButton' )
+            const details = controller.retrieveTodo(dbID, id)
+            console.log(details)
+            const title = document.getElementById('title')
+            const description = document.getElementById('description')
+            const dueDate = document.getElementById('dueDate')
+            const priority = document.getElementById('priority')
+            title.value = details.title;
+            description.value = details.description;
+            dueDate.value = details.dueDate;
+            priority.value = details.priority;
+
+
+   
+            document.getElementById('updateFormButton')
+                .addEventListener('click', ()=> {
+                    const title = document.getElementById('title').value
+                    const description = document.getElementById('description').value
+                    const dueDate = document.getElementById('dueDate').value
+                    const priority = document.getElementById('priority').value
+                    controller.editTodo(dbID, id, title,description,dueDate,priority)})
+
+           
+
+            
         }
         
     }

@@ -18,7 +18,13 @@
 
 .todotiles {
 
-    width: 200px;
+    border-radius: 1px;
+    width: 100px;
+    height:50px;
+    border-style: solid;
+    border-color: grey;
+    cursor: pointer;
+
 }
 
 .deleteButton {
@@ -30,3 +36,5 @@
     float:right;
 
 }
+
+/* The Modal (background) */
