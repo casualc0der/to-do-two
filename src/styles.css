@@ -1,6 +1,6 @@
 .projectIcons {
 
-    height: 1000px;
+    height: 400px;
     width: 150px;
     background-color: aquamarine;
 }
@@ -12,10 +12,21 @@
     height:50px;
     border-style: solid;
     border-color: grey;
+    cursor: pointer;
 
 }
 
+.todotiles {
+
+    width: 200px;
+}
+
 .deleteButton {
+    float:right;
+
+}
+
+.deleteTodoButton {
     float:right;
 
 }
