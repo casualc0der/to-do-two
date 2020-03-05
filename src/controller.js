@@ -27,7 +27,7 @@ document.getElementById('addProject').addEventListener('click', () => {
                 const retrieveDB = JSON.parse(localStorage.getItem(['DATABASE']['PDatabase']))
                 localStorage.setItem(['DATABASE']['PDatabase'], JSON.stringify(retrieveDB))
                 viewController.renderProjects(retrieveDB);
-                console.log(retrieveDB)
+               
 
         })
     })

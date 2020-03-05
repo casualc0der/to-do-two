@@ -1,3 +1,9 @@
+#root {
+
+    display: grid;
+}
+
+
 .projectIcons {
 
     height: 400px;
@@ -45,5 +51,16 @@ ul {
     list-style-type: none;
     /* cursor: pointer; */
 }
+
+.hidden {
+
+    visibility: hidden;
+}
+
+.shown {
+
+    visibility: visible;
+}
+
 
 

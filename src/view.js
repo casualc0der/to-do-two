@@ -28,11 +28,12 @@ const viewController = (() => {
     }
 
     const startUpRender =  () => { 
-
-        createSection('input','root','projectNameInput', 'projectNameInput' )
-        createButton('Add Project', 'root', 'addProject') 
-        createSection('div', 'root', 'projectDisplay', 'projectIcons')
-        createSection('div', 'root', 'todoDisplay', 'todoIcons')
+        createSection('div', 'root', 'projectArea', 'projects')
+        createSection('input','projectArea','projectNameInput', 'projectNameInput' )
+        
+        createButton('Add Project', 'projectArea', 'addProject') 
+        createSection('div', 'projectArea', 'projectDisplay', 'projectIcons')
+        createSection('div', 'projectArea', 'todoDisplay', 'todoIcons')
     }
 
     const renderProjects = (db) => {
@@ -56,13 +57,19 @@ const viewController = (() => {
     }
 
     const renderTodos = (dbID) => {
-    
-
+        
+        console.log(dbID)
         clearSection('todoDisplay')
+        //  document.getElementById('myModal').classList.remove('shown')
+        //  document.getElementById('myModal').classList.add('hidden')
         viewController.createSection('input','todoDisplay',dbID, 'taskNameInput' )
         viewController.createButton('Add Task', 'todoDisplay', 'addTask')
+        
         document.getElementById('addTask').addEventListener('click', () => {
+            
             controller.addTask()
+            document.getElementById('myModal').classList.remove('shown')
+            document.getElementById('myModal').classList.add('hidden')
             renderTodos(dbID);
         
         });
@@ -81,6 +88,8 @@ const viewController = (() => {
                                <li>${e.priority || ''}</li> 
                                </ul>                `;
             node.addEventListener('click', () => {
+                document.getElementById('myModal').classList.remove('hidden')
+                document.getElementById('myModal').classList.add('shown')
                 createForm(dbID, e.id)         
                 
             
@@ -95,6 +104,10 @@ const viewController = (() => {
 
         } catch (error) {
             console.log('Project Deleted!')
+            document.getElementById('addTask').classList.add('hidden')            
+            document.getElementsByClassName('taskNameInput')[0].classList.add('hidden')
+            document.getElementById('myModal').classList.remove('shown')
+            document.getElementById('myModal').classList.add('hidden')
         }
 
         const createForm = (dbID, id) => {
@@ -163,7 +176,10 @@ const viewController = (() => {
                         const dueDate = document.getElementById('dueDate').value
                         const priority = document.getElementById('priority').value
                         controller.editTodo(dbID, id, title,description,dueDate,priority)})
-                        renderTodos(dbID);
+                        // document.getElementById('myModal').classList.remove('shown')
+                        // document.getElementById('myModal').classList.add('hidden')
+                       
+                       renderTodos(dbID);
 
 
 
