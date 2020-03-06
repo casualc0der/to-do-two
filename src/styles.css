@@ -1,8 +1,10 @@
-  #root {
+  /* #root {
 
     display: flex;
+    width: 100%;
+    flex-direction: row;
    
-}  
+}   */
 
 
 .projectIcons {
@@ -16,42 +18,72 @@
 
    .projectTiles {
 
-
+    display: flex;
+    margin: 10px;
+    /* padding-top: 40px; */
+    font-family: monospace;
+    font-size: large;
+    padding: 10px;
    text-align: center;
    background-color: turquoise;
+   text-align: center;
+   justify-content: space-between;
+   justify-items: center;
    
-   width: 100px;
+   width: 200px;
    height: 100px;
-   box-shadow: rgba(0,2,4,0.4);
-   margin: 2px;
-
+   box-shadow: 10px 10px grey;
+   border-radius: 20px;
     cursor: pointer;
-
     text-overflow: ellipsis;
     
     
 
 }
 
+.projTitle {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* #projectHeading {
+    font-size: 40px;
+} */
+
+
+
 .todotiles {
 
-    border-radius: 1px;
-    width: 300px; 
-    height:200px;
-    display: grid;
-    grid-template-columns: 150px, 150px;
-    grid-template-rows: 100px, 100px;
-    border-style: solid;
-    border-color: grey;
+    display: flex;
+    margin: 10px;
+    /* padding-top: 40px; */
+    font-family: monospace;
+    font-size: large;
+    padding: 10px;
+   text-align: center;
+   background-color: turquoise;
+   text-align: center;
+   justify-content: space-between;
+   justify-items: center;
+   
+   width: 200px;
+   height: 300px;
+   box-shadow: 10px 10px grey;
+   border-radius: 20px;
     cursor: pointer;
+    text-overflow: ellipsis;
+    
+    
 
 }
 
 .todotilesdetail {
 
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row: 1;
+
 }
 
 #projectDisplay {
@@ -61,7 +93,10 @@
 }
 
 #todoDisplay {
-    grid-column-start: 2;
+    display: flex;
+    flex-wrap: wrap;
+    width: 70vw;
+    flex-direction: row;
     
 }
 
@@ -73,6 +108,8 @@
    
  
     float: right;
+    height:20px;
+    width: 20px;
 
 }
 
@@ -132,6 +169,9 @@ li {
     font-size: 28px;
     font-weight: bold;
   }
+  .projects {
+      width: 200px;
+  }
   
   .close:hover,
   .close:focus {
@@ -140,5 +180,86 @@ li {
     cursor: pointer;
   }
 
+  /* The side navigation menu */
+#sidebar {
+    margin: 0;
+    margin-top: 30px;
+    padding: 0;
+    width: 270px;
+    background-color: lightblue;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    float: left;
+  }
+  
+  /* Sidebar links */
+  .sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+  }
+  
+  /* Active/current link */
+  .sidebar a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  /* Links on mouse-over */
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+  
+  /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+  div.content {
+    margin-left: 270px;
+    width: 100%;
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; */
+    padding: 1px 16px;
+    height: 1000px;
+  }
 
- 
+  /* The navigation bar */
+#navbar {
+    height:100px;
+    display: flex;
+    padding: 20px;
+    padding-left: 270px;
+    overflow: hidden;
+    background-color: turquoise;
+    position: fixed; /* Set the navbar to fixed position */
+    bottom: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+  }
+
+  .taskNameInput {
+      height: 50px;
+      width: 50vw;
+      border-radius: 20px
+  }
+  
+  /* Links inside the navbar */
+  #navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change background on mouse-over */
+  #navbar a:hover {
+    background: #ddd;
+    color: black;
+  }
+  
+  /* Main content */
+  .main {
+    margin-top: 30px; /* Add a top margin to avoid content overlay */
+  }

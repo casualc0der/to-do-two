@@ -48,9 +48,9 @@ const viewController = (() => {
     }
 
     const startUpRender =  () => { 
-        createSection('div', 'root', 'projectArea', 'projects')
+        createSection('div', 'sidebar', 'projectArea', 'projects')
         createSection('input','projectArea','projectNameInput', 'projectNameInput' )
-        document.getElementById('projectNameInput').maxLength = '20'
+        document.getElementById('projectNameInput').maxLength = '15'
         
         createButton('Add Project', 'projectArea', 'addProject') 
         createSection('div', 'projectArea', 'projectDisplay', 'projectIcons')
@@ -61,8 +61,8 @@ const viewController = (() => {
         clearSection('projectDisplay')
         db.map((e) => {   
         createSection('div', 'projectDisplay', e.id, 'projectTiles')
-                    
-                    const tile = document.getElementById(e.id)
+                    createSection('div', e.id, `P${e.id}`, 'projTitle')
+                    const tile = document.getElementById(`P${e.id}`)
                     tile.innerHTML = e.name
                     createButton('x', e.id, `B~${e.id}`)
                     document.getElementById(`B~${e.id}`).classList.add("deleteButton")
@@ -87,12 +87,13 @@ const viewController = (() => {
         
         console.log(dbID)
         clearSection('todoDisplay')
+        clearSection('navbar')
         const modal = document.getElementById('Modal')
         modal.style.display = "none"
        
-        viewController.createSection('h6', 'todoDisplay', 'projectHeading', 'projeheading')
-        viewController.createSection('input','todoDisplay',dbID, 'taskNameInput' )
-        viewController.createButton('Add Task', 'todoDisplay', 'addTask')
+        viewController.createSection('h6', 'navbar', 'projectHeading', 'projeheading')
+        viewController.createSection('input','navbar',dbID, 'taskNameInput' )
+        viewController.createButton('Add Task', 'navbar', 'addTask')
         
         document.getElementById('addTask').addEventListener('click', () => {
             
@@ -111,6 +112,8 @@ const viewController = (() => {
             console.log(projectTitle)
             const tasks = retrieveDB.filter(e => e.id === dbID)[0].todoListCollection
             document.getElementById('projectHeading').innerHTML = projectTitle.name
+            
+            
             tasks.forEach((e) => {
     
             console.log(e.datedue)
