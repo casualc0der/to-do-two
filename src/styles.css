@@ -1,55 +1,95 @@
-#root {
+  #root {
 
-    display: grid;
-}
+    display: flex;
+   
+}  
 
 
 .projectIcons {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 30vw;
+    border-radius: 10px;
 
-    height: 400px;
-    width: 150px;
-    background-color: aquamarine;
-}
+} 
 
-.projectTiles {
+   .projectTiles {
 
-    border-radius: 1px;
-    width: 100px;
-    height:50px;
-    border-style: solid;
-    border-color: grey;
+
+   text-align: center;
+   background-color: turquoise;
+   
+   width: 100px;
+   height: 100px;
+   box-shadow: rgba(0,2,4,0.4);
+   margin: 2px;
+
     cursor: pointer;
+
+    text-overflow: ellipsis;
+    
+    
 
 }
 
 .todotiles {
 
     border-radius: 1px;
-    width: 200px;
-    height:100px;
+    width: 300px; 
+    height:200px;
+    display: grid;
+    grid-template-columns: 150px, 150px;
+    grid-template-rows: 100px, 100px;
     border-style: solid;
     border-color: grey;
     cursor: pointer;
 
 }
 
+.todotilesdetail {
+
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row: 1;
+}
+
+#projectDisplay {
+   grid-column-start: 1;
+    padding-left: 10px;
+    width: 250px;
+}
+
 #todoDisplay {
-    float:right;
+    grid-column-start: 2;
+    
+}
+
+#myModal {
+    grid-column-start: 3;
 }
 
 .deleteButton {
-    float:right;
+   
+ 
+    float: right;
 
 }
 
 .deleteTodoButton {
-    float:right;
+    grid-column: 3;
+    grid-row: 3;
 
 }
 
 ul {
     list-style-type: none;
-    /* cursor: pointer; */
+   
+}
+
+li {
+
+    width: 50%;
 }
 
 .hidden {
@@ -60,7 +100,45 @@ ul {
 .shown {
 
     visibility: visible;
-}
+}   
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  #modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
 
-
+ 

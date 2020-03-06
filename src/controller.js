@@ -2,6 +2,7 @@ import { viewController } from './view';
 import { model } from './model'
 import { init } from './init'
 import { v4 as uuidv4 } from 'uuid';
+import { formatDistance, subDays } from 'date-fns'
 
 const controller = (() => {
 
@@ -13,6 +14,7 @@ const startUp = () => {
     
 document.getElementById('addProject').addEventListener('click', () => {
     addProject();
+    viewController.clearInputText('projectNameInput')
     })
 };
 

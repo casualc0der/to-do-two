@@ -1,6 +1,19 @@
 import { controller } from './controller'
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const viewController = (() => {
+
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+        modal.style.display = "none";
+      }
+    const modal = document.getElementById('Modal')
+    modal.style.display = "none"
+    window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
 
     const createSection = (type, attachId, sectionId, sectionClass) => {
         const newSection = document.createElement(type)
@@ -27,13 +40,21 @@ const viewController = (() => {
     
     }
 
+    const clearInputText = (sectionID) => {
+
+        const node = document.getElementById(sectionID);
+        node.value = ''
+        node.innerHTML = ''
+    }
+
     const startUpRender =  () => { 
         createSection('div', 'root', 'projectArea', 'projects')
         createSection('input','projectArea','projectNameInput', 'projectNameInput' )
+        document.getElementById('projectNameInput').maxLength = '20'
         
         createButton('Add Project', 'projectArea', 'addProject') 
         createSection('div', 'projectArea', 'projectDisplay', 'projectIcons')
-        createSection('div', 'projectArea', 'todoDisplay', 'todoIcons')
+        createSection('div', 'root', 'todoDisplay', 'todoIcons')
     }
 
     const renderProjects = (db) => {
@@ -45,13 +66,19 @@ const viewController = (() => {
                     tile.innerHTML = e.name
                     createButton('x', e.id, `B~${e.id}`)
                     document.getElementById(`B~${e.id}`).classList.add("deleteButton")
-                    tile.addEventListener('click', () => renderTodos(e.id))
+                    tile.addEventListener('click', () => {
+                        
+   
+                        renderTodos(e.id)
+                    
+                    })
+                    
         })
       
            
             
 
-     
+        
             controller.deleteProjectButtons();
 
     }
@@ -60,26 +87,35 @@ const viewController = (() => {
         
         console.log(dbID)
         clearSection('todoDisplay')
-        //  document.getElementById('myModal').classList.remove('shown')
-        //  document.getElementById('myModal').classList.add('hidden')
+        const modal = document.getElementById('Modal')
+        modal.style.display = "none"
+       
+        viewController.createSection('h6', 'todoDisplay', 'projectHeading', 'projeheading')
         viewController.createSection('input','todoDisplay',dbID, 'taskNameInput' )
         viewController.createButton('Add Task', 'todoDisplay', 'addTask')
         
         document.getElementById('addTask').addEventListener('click', () => {
             
             controller.addTask()
-            document.getElementById('myModal').classList.remove('shown')
-            document.getElementById('myModal').classList.add('hidden')
+
             renderTodos(dbID);
+        
         
         });
         
         const retrieveDB = JSON.parse(localStorage.getItem(['DATABASE']['PDatabase']));
         try {
-            
+
+            document.getElementById('projectHeading')
+            const projectTitle =  retrieveDB.filter(e => e.id === dbID)[0]
+            console.log(projectTitle)
             const tasks = retrieveDB.filter(e => e.id === dbID)[0].todoListCollection
+            document.getElementById('projectHeading').innerHTML = projectTitle.name
             tasks.forEach((e) => {
-            createSection('div', 'todoDisplay', `T-${e.id}`, 'todotiles')
+    
+            console.log(e.datedue)
+            createSection('div', 'todoDisplay', `TT-${e.id}`, 'todotiles')
+            createSection('div', `TT-${e.id}`, `T-${e.id}`, 'todotilesdetail')
             const node = document.getElementById(`T-${e.id}`)
             node.innerHTML = `  <ul>
                                 <li>${e.title}</li>            
@@ -88,26 +124,30 @@ const viewController = (() => {
                                <li>${e.priority || ''}</li> 
                                </ul>                `;
             node.addEventListener('click', () => {
-                document.getElementById('myModal').classList.remove('hidden')
-                document.getElementById('myModal').classList.add('shown')
+       
                 createForm(dbID, e.id)         
-                
+                const modal = document.getElementById('Modal')
+                modal.style.display = "block"
             
             })
-            createButton('x', `T-${e.id}`, `BB${e.id}`)
+            createButton('x', `TT-${e.id}`, `BB${e.id}`)
             document.getElementById(`BB${e.id}`).classList.add('deleteTodoButton')
             document.getElementById(`BB${e.id}`).addEventListener('click', () => {
             controller.deleteTask(dbID, e.id)
+            const modal = document.getElementById('Modal')
+            modal.style.display = "none"
             renderTodos(dbID);
             })
         })
 
         } catch (error) {
-            console.log('Project Deleted!')
+            // console.log('Project Deleted!')
+            console.log(error)
             document.getElementById('addTask').classList.add('hidden')            
             document.getElementsByClassName('taskNameInput')[0].classList.add('hidden')
-            document.getElementById('myModal').classList.remove('shown')
-            document.getElementById('myModal').classList.add('hidden')
+            const modal = document.getElementById('Modal')
+            modal.style.display = "none"
+         
         }
 
         const createForm = (dbID, id) => {
@@ -115,6 +155,11 @@ const viewController = (() => {
             try {
                 clearSection('myModal')
                 createSection('div','myModal', `F-${id}`, 'taskForm')
+                const modal = document.getElementById('Modal')
+                const modalContent = document.getElementById('modal-content')
+                modal.appendChild(modalContent)
+                
+                
                 createSection('input',`F-${id}`,'title', 'taskFormFields')
                 createSection('input',`F-${id}`,'description', 'taskFormFields')
                 createSection('input',`F-${id}`,'dueDate', 'taskFormFields')
@@ -129,7 +174,7 @@ const viewController = (() => {
                 document.getElementById('normal').textContent = 'Normal'
                 document.getElementById('low').value = 'Low'
                 document.getElementById('low').textContent = 'Low'
-
+                
 
                 const details = controller.retrieveTodo(dbID, id)
                 console.log(details)
@@ -175,9 +220,15 @@ const viewController = (() => {
                         const description = document.getElementById('description').value
                         const dueDate = document.getElementById('dueDate').value
                         const priority = document.getElementById('priority').value
-                        controller.editTodo(dbID, id, title,description,dueDate,priority)})
+                        controller.editTodo(dbID, id, title,description,dueDate,priority)
+                        const modal = document.getElementById('Modal')
+                        modal.style.display = "none"
+                        
                         // document.getElementById('myModal').classList.remove('shown')
                         // document.getElementById('myModal').classList.add('hidden')
+                    
+                    })
+                       
                        
                        renderTodos(dbID);
 
@@ -187,6 +238,8 @@ const viewController = (() => {
 
             } catch (error) {
                 clearSection('myModal')
+                const modal = document.getElementById('Modal')
+                modal.style.display = "none"
                 
             }
            
@@ -199,7 +252,7 @@ const viewController = (() => {
     }
 
 
-return { createSection, createButton, renderProjects, renderTodos, startUpRender }
+return { createSection, createButton, clearInputText, renderProjects, renderTodos, startUpRender }
 })();
 
 export { viewController }
