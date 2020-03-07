@@ -1,10 +1,49 @@
-  /* #root {
+  body {
+    font-family: 'IBM Plex Mono', monospace;
+    background-color: #222831;
+  }
 
-    display: flex;
+  #header {
+
     width: 100%;
-    flex-direction: row;
+    height: 30px;
+    background-color: teal;
+  }
+  
+  #root {
+
+  
+  margin-bottom: 50px;
    
-}   */
+}  
+
+/* Style the header */
+.header {
+  padding: 10px 16px;
+  background: #222831;
+  color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+/* Page content */
+.content {
+  padding: 16px;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 102px;
+}
 
 
 .projectIcons {
@@ -13,6 +52,7 @@
     height: 100%;
     width: 30vw;
     border-radius: 10px;
+    margin-bottom: 50px;
 
 } 
 
@@ -21,18 +61,19 @@
     display: flex;
     margin: 10px;
     /* padding-top: 40px; */
-    font-family: monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: large;
     padding: 10px;
    text-align: center;
-   background-color: turquoise;
+   background-color: #575e6a;
+   color: #00fff5;;
    text-align: center;
    justify-content: space-between;
    justify-items: center;
    
    width: 200px;
    height: 100px;
-   box-shadow: 10px 10px grey;
+   
    border-radius: 20px;
     cursor: pointer;
     text-overflow: ellipsis;
@@ -50,40 +91,63 @@
     justify-content: center;
 }
 
-/* #projectHeading {
-    font-size: 40px;
-} */
+#projectHeading {
+    color:white;
+    margin-bottom: 100px;
+    width: 170px;
+    height: 40px;
+    
+}
 
 
 
 .todotiles {
 
     display: flex;
+    flex-wrap: wrap;
     margin: 10px;
     /* padding-top: 40px; */
-    font-family: monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: large;
     padding: 10px;
    text-align: center;
-   background-color: turquoise;
+   background-color: #575e6a;
+   color: #00fff5;
    text-align: center;
-   justify-content: space-between;
+   justify-content: center;
    justify-items: center;
    
-   width: 200px;
-   height: 300px;
-   box-shadow: 10px 10px grey;
+   width: 60vw;
+   
+  
    border-radius: 20px;
     cursor: pointer;
-    text-overflow: ellipsis;
+    
+    white-space: wrap;
+    
     
     
 
 }
+h2 {
+  padding: 0;
+  margin: 0;
+
+  
+}
 
 .todotilesdetail {
+width: 90%;
+display: flex;
+flex-wrap: wrap;
+word-wrap: break-word;
 
+}
 
+#projectHeading {
+  font-size: xx-large;
+  float: left;
+  min-width: 270px;
 }
 
 #projectDisplay {
@@ -97,6 +161,7 @@
     flex-wrap: wrap;
     width: 70vw;
     flex-direction: row;
+    margin-bottom: 50px;
     
 }
 
@@ -110,23 +175,34 @@
     float: right;
     height:20px;
     width: 20px;
+    border-radius: 20px;
+    background-color:#222831;
+    color: #00fff5;
+    border: none;
 
 }
 
 .deleteTodoButton {
-    grid-column: 3;
-    grid-row: 3;
+  float: left;
+  height:20px;
+  width: 20px;
+  border-radius: 20px;
+  background-color:#222831;
+  color: #00fff5;
+  border: none;
 
 }
 
 ul {
     list-style-type: none;
+    width: 90%;
+    
    
 }
 
 li {
 
-    width: 50%;
+    width: 90%;
 }
 
 .hidden {
@@ -155,7 +231,10 @@ li {
   
   /* Modal Content/Box */
   #modal-content {
-    background-color: #fefefe;
+    
+    background-color: #575e6a;
+    font-size: large;
+    color: #00fff5;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
@@ -184,9 +263,10 @@ li {
 #sidebar {
     margin: 0;
     margin-top: 30px;
+    
     padding: 0;
     width: 270px;
-    background-color: lightblue;
+    background-color:  #393e46;
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -224,14 +304,27 @@ li {
     height: 1000px;
   }
 
+  #addTask {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    margin-top: 5px;
+    margin-left: 10px;
+    background-color: #00fff5; ;
+    border: none;
+    font-weight: 600;
+    color: #222831;
+  }
+
   /* The navigation bar */
 #navbar {
+  display: flex;
     height:100px;
     display: flex;
     padding: 20px;
-    padding-left: 270px;
+    /* padding-left: 270px; */
     overflow: hidden;
-    background-color: turquoise;
+    background-color: #393e46;
     position: fixed; /* Set the navbar to fixed position */
     bottom: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
@@ -240,8 +333,45 @@ li {
   .taskNameInput {
       height: 50px;
       width: 50vw;
-      border-radius: 20px
+      border-radius: 20px;
+      margin-left: 10vw;
+      box-shadow: inset 0 5px 5px hsla(0, 0%, 0%, 0.1);
+      background-color: #5f6165;
+      font-size: xx-large;
+      color: #00fff5; ;
+      border: none;
   }
+
+  #projectArea {
+
+    width:100%
+  }
+
+  .projectNameInput {
+    height: 50px;
+    width: 190px;
+    border-radius: 20px;
+
+    box-shadow: inset 0 5px 5px hsla(0, 0%, 0%, 0.1);
+    background-color: #5f6165;
+    font-size: xx-large;
+    color: #00fff5;
+    border: none;
+}
+
+#addProject {
+  float: right;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  /* margin-top: 5px;
+  margin-left: 10px; */
+  background-color: #00fff5;;
+  color: #222831;
+  border: none;
+  font-weight: 600;
+
+}
   
   /* Links inside the navbar */
   #navbar a {
@@ -263,3 +393,5 @@ li {
   .main {
     margin-top: 30px; /* Add a top margin to avoid content overlay */
   }
+
+
