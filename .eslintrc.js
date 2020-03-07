@@ -4,7 +4,7 @@ module.exports = {
     'es6': true,
   },
   'extends': [
-    'google',
+    'google', 'plugin:prettier/recommended'
   ],
   'globals': {
     'Atomics': 'readonly',
